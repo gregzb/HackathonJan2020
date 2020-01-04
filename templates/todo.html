@@ -9,15 +9,15 @@
 {% endblock %}
 
 {% block content %}
-<div class="w-100 p-4">
-  <div class="card">
-      <div class="card-body">
-          <h1 class="page-header">Welcome {{ session.name}}! </h1>
-          <h3 class="font-weight-light font-italic text-secondary">{{motivational_quote}}</h3>
-      </div>
-  </div>
+<div class="w-100 p-4" style="border-radius: 10px;">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="page-header">Welcome {{ session.name}}! </h1>
+            <h3 class="font-weight-light font-italic text-secondary">{{motivational_quote}}</h3>
+        </div>
+    </div>
 
-  <br>
+    <br>
 
   <div class="card">
       <div class="card-body">
@@ -27,23 +27,24 @@
 
   <br>◯
 
-  <div class="card">
-      <div class="card-body">
-          <h2 class="page-header">Homework</h2>
-          <hr>
-          <div class="row">
-              <div class="col col-sm-8">
-                  <input type="text" class="form-control input-lg col-xs-1 shadow-none" style="border: none; font-size: 18px;" id="inputlg"></input>
-              </div>
-              <div class="col col-sm-1">
-                  <div class="form-check">
-                      <input type="checkbox" class="form-check-input big-checkbox" id="exampleCheck1">
+  <div id="todolist">
+      <div class="card">
+          <div class="card-body">
+              <h2 class="page-header">Homework</h2>
+              <hr>
+              <div class="row">
+                  <div class="col col-sm-8">
+                      <input type="text" class="form-control input-lg col-xs-1 shadow-none" style="border: none; font-size: 18px;" id="inputlg"></input>
                   </div>
+                  <div class="col col-sm-1">
+                      <div class="form-check">
+                          <input type="checkbox" class="form-check-input big-checkbox" id="exampleCheck1">
+                      </div>
+                  </div>
+                  <div class="col col-sm-3"></div>
               </div>
-              <div class="col col-sm-3"></div>
           </div>
       </div>
   </div>
-
 </div>
 {% endblock %}
