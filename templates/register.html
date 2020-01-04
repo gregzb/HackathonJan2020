@@ -6,7 +6,9 @@
         <div class="card-body">
             Please register to enter the site:
             <br>
-            {{errorMessage}}
+            <div style="color:red; font-style:italic;">
+                {{errorMessage}}
+            </div>
             <br>
             <form action='/register', method="POST">
                 Your name:
