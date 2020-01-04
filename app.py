@@ -18,7 +18,7 @@ def index():
         session['name'] = db_manager.getName(session['username'])
         print(session)
         return render_template("todo.html")
-    return render_template('login.html',errorMessage = "")
+    return render_template('login.html', errorMessage = "")
 
 @app.route("/login", methods=["POST"])
 def login():
