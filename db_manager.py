@@ -33,14 +33,15 @@ def addUser(name,username, password):
         num=exec(command).fetchone()[0]
         inputs = (num,username, password, name)
         execmany(q, inputs)
+        print()
         num+=1
-        q="INSERT INTO stored_tbl VALUES(?)"
+        q="UPDATE stored_tbl stored_tbl SET id=?"
         inputs=(num,)
         execmany(q,inputs)
         return True
     return False
 
-def additem(username,password, date,item,color):
+def additem(username,name,date,item,color):
     inputs = (username,)
     q="SELECT id FROM user_tbl WHERE username=?"
     id=execmany(q,inputs).fetchone()[0]
@@ -50,12 +51,21 @@ def additem(username,password, date,item,color):
     q="UPDATE user_tbl SET maxorder=? WHERE username=?"
     inputs=(maxorder,username)
     execmany(q,inputs)
-    q="INSERT INTO todo_tbl VALUES(?,?,?,?,?)"
-    inputs=(id,maxorder,date,item,color);
+    q="INSERT INTO todo_tbl VALUES(?,?,?,?,?,?)"
+    inputs=(id,name,maxorder,date,item,color);
     inputs=(id,maxorder)
     execmany(q,inputs)
-    
+
 def getName(username):
     q="SELECT name FROM user_tbl WHERE username=?"
     inputs=(username,)
-    return execmany(q,inputs).fetchone()[0]
+    data=execmany(q,inputs).fetchall()
+    data=formatFetch(data)[0];
+    return data
+
+def getList(username):
+    q="SELECT listName FROM todo_tbl WHERE username=?"
+    inputs=(username,)
+    data=execmany(q,inputs)
+    data=formatFetch(data)
+    return data

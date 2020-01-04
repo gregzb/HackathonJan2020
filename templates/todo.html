@@ -18,17 +18,26 @@
     <br>
 
   <div class="card">
-      <div class="card-body">
-          <h2 class="page-header">Todos: </h2>
+      <div class="card-body row">
+        <div class="col-sm-2">
+          <h2 class="page-header">To-Dos: </h2>
+        </div>
+        <div class="col-sm-9">
+        </div>
+        <div class="col-sm-1">
+          <a href="#" onClick="document.form1.reset();"><img src="static/images/plussign.png" width="20px;" height="20px;" style="float-right;"></a>
+        </div>
+      </div>
+      <div class="card-body row">
+        <div class="col-sm-2">
+          <h4>{{lists}}</h4>
+        </div>
+        </div>
       </div>
   </div>
 
   <br>
 
-  <div class="card">
-      <div class="card-body">
-          <h2 class="page-header mr-auto">Todo: <a href="#" onClick="document.form1.reset();"><img src="static/images/plussign.png" width="20px;" height="20px;" style="float-right;"></a></h2>
-          <div id="todo-list">
 
   <div id="todolist">
       <div class="card">
@@ -50,4 +59,40 @@
       </div>
   </div>
 </div>
+
+<div class="container">
+ <ul id="draggablePanelList" class="list-unstyled">
+   <li class="card">
+       <div class="card-body">Content here ...</div>
+   </li>
+   <li class="card">
+       <div class="card-body">Content here ...</div>
+   </li>
+   <li class="card">
+       <div class="card-body">Content here ...</div>
+   </li>
+   <li class="card">
+       <div class="card-body">Content here ...</div>
+   </li>
+ </ul>
+<script type="text/javascript">
+  jQuery(function($) {
+        var panelList = $('#draggablePanelList');
+
+        panelList.sortable({
+            // Only make the .panel-heading child elements support dragging.
+            // Omit this to make then entire <li>...</li> draggable.
+            handle: '.card-body',
+            update: function() {
+                $('.card', panelList).each(function(index, elem) {
+                     var $listItem = $(elem),
+                         newIndex = $listItem.index();
+
+                     // Persist the new indices.
+                });
+            }
+        });
+    });
+</script>
+
 {% endblock %}
