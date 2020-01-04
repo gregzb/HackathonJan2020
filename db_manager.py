@@ -27,7 +27,7 @@ def addUser(name,username, password):
     inputs = (username,)
     data = execmany(q, inputs).fetchone()
     if (data is None):
-        q = "INSERT INTO user_tbl VALUES(?, ?, ?, ?)"
+        q = "INSERT INTO user_tbl VALUES(?, ?, ?, ?, 0)"
         command = "SELECT randid from stored_tbl;"
         num=exec(command).fetchone()[0]
         inputs = (num, name, username, password)
@@ -37,3 +37,15 @@ def addUser(name,username, password):
         execmany(q,inputs)
         return True
     return False
+
+def additem(username,password, date,item,color):
+    inputs = (username,)
+    q="SELECT id FROM user_tbl WHERE username=?"
+    id=execmany(q,inputs).fetchone()[0]
+    q="SELECT maxorder FROM user_tbl WHERE username=?"
+    maxorder=execmany(q,inputs).fetchone()[0] + 1
+    maxorder+=1
+    q="UPDATE user_tbl SET maxorder=? WHERE username=?"
+    inputs=(maxorder,username)
+    q="INSERT INTO todo_tbl VALUES(?,?,?,?,?)"
+    inputs(id,maxorder)

@@ -20,7 +20,7 @@ def execmany(cmd, inputs):
 
 #==========================================================
 def build_db():
-    command="CREATE TABLE IF NOT EXISTS user_tbl (id INT, username TEXT, password TEXT, name TEXT)"
+    command="CREATE TABLE IF NOT EXISTS user_tbl (id INT, username TEXT, password TEXT, name TEXT,maxorder INT)"
     exec(command)
 
     command="CREATE TABLE IF NOT EXISTS todo_tbl (id INT, ordernum INT, date TEXT, todo TEXT, color TEXT)"
