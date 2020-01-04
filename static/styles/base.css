@@ -3,9 +3,6 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
-input {
-    border-radius: 5px;
-}
 #draggablePanelList .panel-heading {
     cursor: move;
 }
