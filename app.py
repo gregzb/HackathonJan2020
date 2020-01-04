@@ -9,14 +9,16 @@ import db_builder
 import db_manager
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
-
+db_builder.build_db()
 
 @app.route("/")
 @app.route("/index")
 def index():
     if 'username' in session and 'password' in session:
-        return render_template("todo.html")
-    return render_template('login.html',errorMessage = "")
+        session['name'] = db_manager.getName(session['username'])
+        print(session)
+        return render_template("todo.html", session = session, motivational_quote = "Well done is better than well said.")
+    return render_template('login.html', errorMessage = "")
 
 @app.route("/login", methods=["POST"])
 def login():
@@ -45,14 +47,16 @@ def register():
         session['username'] = request.form["username"]          # assign username key in session to inputted username
         session['password'] = request.form["password1"]          # assign password key in session to inputted password1
         session['password2'] = request.form["password2"]          # assign password key in session to inputted password2
+        session['name'] = request.form["name"]
         if (session):
+            name = session['name']
             username = session['username']
             password1 = session['password']
             password2 = session['password2']
             if password1 == '' or password2 == '':
                 return render_template('register.html', errorMessage = 'Password cannot be blank')
             if (password1 == password2):
-                if (db_manager.addUser("poo",username, password1)):
+                if (db_manager.addUser(name , username, password1)):
                     return redirect(url_for("index"))
                 return render_template('register.html',
                     errorMessage = "Username already taken")
@@ -67,6 +71,7 @@ def logout():      # route logs out the user by getting rid of username and pass
     if ('username' in session and 'password' in session):
         session.pop('username')
         session.pop('password')
+        session.pop('name')
         if 'password2' in session:
             session.pop('password2')
         return redirect(url_for("index"))                # redirect to beginning
