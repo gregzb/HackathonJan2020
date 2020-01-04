@@ -5,10 +5,42 @@ from flask import redirect
 from flask import url_for
 from flask import session
 import os
+import random
 import db_builder
 import db_manager
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
+
+coolors = [['#5668d', '#28090', '#0a896', '#2c39a', '#f0f3bd']
+,['#ffffff', '#0171f', '#03459', '#07ea7', '#0a8e8']
+,['#d8e2dc', '#ffe5d9', '#ffcad4', '#f4acb7', '#9d8189']
+,['#fe938c', '#e6b89c', '#ead2ac', '#9cafb7', '#4281a4']
+,['#5bc0eb', '#fde74c', '#9bc53d', '#e55934', '#fa7921']
+,['#ed6a5a', '#f4f1bb', '#9bc1bc', '#5ca4a9', '#e6ebe0']
+,['#ef476f', '#ffd166', '#6d6a0', '#118ab2', '#73b4c']
+,['#b132b', '#1c2541', '#3a506b', '#5bc0be', '#6fffe9']
+,['#03049', '#d62828', '#f77f0', '#fcbf49', '#eae2b7']
+,['#bce784', '#5dd39e', '#348aa7', '#525174', '#513b56']
+,['#000', '#14213d', '#fca311', '#e5e5e5', '#ffffff']
+,['#11627', '#fdfffc', '#2ec4b6', '#e71d36', '#ff9f1c']
+,['#9c89b8', '#f0a6ca', '#efc3e6', '#f0e6ef', '#b8bedd']
+,['#f2d7ee', '#d3bcc0', '#a5668b', '#69306d', '#e103d']
+,['#114b5f', '#28090', '#e4fde1', '#456990', '#f45b69']
+,['#22223b', '#4a4e69', '#9a8c98', '#c9ada7', '#f2e9e4']
+,['#dcdcdd', '#c5c3c6', '#46494c', '#4c5c68', '#1985a1']
+,['#ff9f1c', '#ffbf69', '#ffffff', '#cbf3f0', '#2ec4b6']
+,['#3d5a80', '#98c1d9', '#e0fbfc', '#ee6c4d', '#293241']
+,['#114b5f', '#1a936f', '#88d498', '#c6dabf', '#f3e9d2']
+,['#11627', '#f71735', '#41ead4', '#fdfffc', '#ff9f1c']
+,['#7bdff2', '#b2f7ef', '#eff7f6', '#f7d6e0', '#f2b5d4']
+,['#e63946', '#f1faee', '#a8dadc', '#457b9d', '#1d3557']
+,['#ffcdb2', '#ffb4a2', '#e5989b', '#b5838d', '#6d6875']
+,['#264653', '#2a9d8f', '#e9c46a', '#f4a261', '#e76f51']
+,['#50514f', '#f25f5c', '#ffe066', '#247ba0', '#70c1b3']
+,['#1a535c', '#4ecdc4', '#f7fff7', '#ff6b6b', '#ffe66d']
+,['#2b2d42', '#8d99ae', '#edf2f4', '#ef233c', '#d9429']
+,['#ffffff', '#84dcc6', '#a5ffd6', '#ffa69e', '#ff686b']
+,['#247ba0', '#70c1b3', '#b2dbbf', '#f3ffbd', '#ff1654']]
 
 @app.route("/")
 @app.route("/index")
@@ -16,8 +48,9 @@ def index():
     db_builder.build_db()
     if 'username' in session and 'password' in session:
         session['name'] = db_manager.getName(session['username'])
-        print(session)
-        return render_template("todo.html", session = session, motivational_quote = "Well done is better than well said.")
+        colors = random.choice(coolors)
+        print(colors)
+        return render_template("todo.html", session = session, motivational_quote = "Well done is better than well said.", coolors = colors)
     return render_template('login.html', errorMessage = "")
 
 @app.route("/login", methods=["POST"])
