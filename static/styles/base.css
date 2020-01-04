@@ -1,8 +1,4 @@
 body {
-    background-image: url('../images/hotel.jpg');
     font-family: 'Source Sans Pro', sans-serif;
-}
-
-#draggablePanelList .panel-heading {
-    cursor: move;
+    background-repeat: no-repeat;
 }
