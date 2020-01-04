@@ -17,47 +17,63 @@
 
 <br>
     <div class="card">
-        <div class="card-body">
+        <div class="card-body row">
+          <div class="col-sm-2">
             <h2 class="page-header">To-Dos: </h2>
+          </div>
+          <div class="col-sm-9">
+          </div>
+          <div class="col-sm-1">
+            <a id="new-list"><img src="static/images/plussign.png" width="20px;" height="20px;" style="float-right;"></a>
+          </div>
         </div>
         <div class="row">
           <div class="col-sm-1">
             </div>
           <div class="col-sm-2">
             {% for item in lists %}
-            <h4><a href="#" onClick="document.form1.reset();">{{item}}</a></h4>
+            <h4><a href="#">{{item}}</a></h4>
             {% endfor %}
           </div>
           </div>
     </div>
-    <br>
-    <div id="todolist">
-        <div class="card">
-            <div class="card-body">
-                <input type="text" class="form-control input-lg col-xs-1 shadow-none title-input" style="border: none; font-size: 30px;" placeholder="Todo List Title..."></input>
-                <div id="draggable-list-container">
-                  <ul class="list-unstyled draggablelist">
-                    <li class="item">
-                    <div class="drag-el">
-                      <hr>
-                      <div class="row">
-                          <div class="col col-sm-8">
-                              <input type="text" class="form-control input-lg col-xs-1 shadow-none todo-input" style="border: none; font-size: 18px;" placeholder="Todo..."></input>
-                          </div>
-                          <div class="col col-sm-1">
 
-                          </div>
-                          <div class="col col-sm-3"></div>
-                      </div>
+    <div id="todolists">
+
+      <div class="card" style="visibility: hidden; width: 0; height: 0;">
+          <div class="card-body">
+              <input type="text" name="title" class="form-control input-lg col-xs-1 shadow-none title-input" style="border: none; font-size: 30px;" placeholder="Todo List Title..."></input>
+              <div id="draggable-list-container">
+                <ul class="list-unstyled draggablelist">
+                  <li class="item">
+                  <div class="drag-el">
+                    <hr>
+                    <div class="row">
+                        <div class="col col-sm-8">
+                            <input type="text" name="todo-0" class="form-control input-lg col-xs-1 shadow-none todo-input" style="border: none; font-size: 18px;" placeholder="Todo..."></input>
+                        </div>
+                        <div class="col col-sm-3">
+
+                        </div>
+                        <div class="col col-sm-1">
+                          <a class="btn btn-primary del" role="button" aria-pressed="true">X</a>
+                        </div>
                     </div>
-                    </li>
+                  </div>
+                  </li>
 
-                  </ul>
+                </ul>
 
-                </div>
+              </div>
 
-            </div>
-        </div>
+          </div>
+      </div>
+
+
+
+
+
+
     </div>
 </div>
 
