@@ -1,5 +1,9 @@
 body {
-    background-image: url('static/images/serene.jpg');
+    background-image: url('static/images/hotel.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+input {
+    border-radius: 5px;
 }
