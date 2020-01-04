@@ -1,26 +1,27 @@
-#Jackson Zou
-#SoftDev
-#skeleton :: SQLITE3 BASICS
-#Oct 2019
+import sqlite3, urllib, json
 
-import sqlite3   #enable control of an sqlite database
-import csv       #facilitate CSV I/O
+DB_FILE = "trivia.db"
 
+def exec(cmd):
+    """Executes a sqlite command"""
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    output = c.execute(cmd)
+    db.commit()
+    return output
 
-DB_FILE="discobandit.db"
-
-db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
-c = db.cursor()               #facilitate db ops
-
-#==========================================================
-
-# < < < INSERT YOUR POPULATE-THE-DB CODE HERE > > >
-
-
-command = ""          # test SQL stmt in sqlite3 shell, save as string
-c.execute(command)    # run SQL statement
+def execmany(cmd, inputs):
+    """Executes a sqlite command using ? placeholder"""
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    output = c.execute(cmd, inputs)
+    db.commit()
+    return output
 
 #==========================================================
+def build_db():
+    command="CREATE TABLE IF NOT EXISTS user_tbl (id INT, username TEXT, password TEXT, Name)"
+    exec(command)
 
-db.commit() #save changes
-db.close()  #close database
+    command="CREATE TABLE IF NOT EXISTS todo_tbl (id INT, date TEXT, todo TEXT, color TEXT)"
+    exec(command)
