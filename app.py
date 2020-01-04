@@ -44,6 +44,8 @@ coolors = [['#5668d', '#28090', '#0a896', '#2c39a', '#f0f3bd']
 ,['#ffffff', '#84dcc6', '#a5ffd6', '#ffa69e', '#ff686b']
 ,['#247ba0', '#70c1b3', '#b2dbbf', '#f3ffbd', '#ff1654']]
 
+quotes = ["Good, better, best. Never let it rest. 'Til your good is better and your better is best.", "If a cow ever got the chance, he'd eat you and everyone you care about", "It’s okay if you don’t like me. Not everyone has good taste.", "As your best friend I’ll always pick you up when you fall, after I finish laughing.", "A successful man is one who can lay a firm foundation with the bricks others have thrown at him.", "There is no traffic jam along the extra mile", "If you don't design your own life plan, chances are you'll fall into someone else's plan. And guess what they have planned for you? Not much", "Don't let the fear of losing be greater than the excitement of winning.", 
+]
 @app.route("/")
 @app.route("/index")
 def index():
