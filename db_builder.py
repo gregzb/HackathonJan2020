@@ -23,5 +23,11 @@ def build_db():
     command="CREATE TABLE IF NOT EXISTS user_tbl (id INT, username TEXT, password TEXT, name TEXT)"
     exec(command)
 
-    command="CREATE TABLE IF NOT EXISTS todo_tbl (id INT, date TEXT, todo TEXT, color TEXT)"
+    command="CREATE TABLE IF NOT EXISTS todo_tbl (id INT, ordernum INT, date TEXT, todo TEXT, color TEXT)"
     exec(command)
+
+    command="CREATE TABLE IF NOT EXISTS stored_tbl (id INT)"
+    exec(command)
+
+    command="INSERT INTO stored_tbl VALUES(0);"
+    exec(command);
