@@ -33,10 +33,10 @@ def login():
         if (session):
             username = session['username']
             password = session['password']
-            validLogin = db_manager.userValid(username, password) #temp for testing
-            if (not validLogin):
-                return render_template('login.html', errorMessage = "Invalid Credentials")
-            return redirect(url_for("index"))
+            print(session)
+            if (db_manager.userValid(username, password)):
+                return redirect(url_for("index"))
+            return render_template('login.html', errorMessage = "Invalid Credentials")
         else:
             return render_template('login.html',errorMessage = "")
 
