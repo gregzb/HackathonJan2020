@@ -14,7 +14,6 @@ app.secret_key = os.urandom(32)
 @app.route("/")
 @app.route("/index")
 def index():
-    print(session)
     if 'username' in session and 'password' in session:
         return render_template("todo.html")
     return render_template('login.html',errorMessage = "")
