@@ -3,6 +3,10 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
-#draggablePanelList .panel-heading {
-    cursor: move;
+.title-input {
+  color: #000000;
+}
+
+.todo-input {
+  color: #222222;
 }
