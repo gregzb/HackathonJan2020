@@ -49,5 +49,8 @@ def additem(username,password, date,item,color):
     maxorder+=1
     q="UPDATE user_tbl SET maxorder=? WHERE username=?"
     inputs=(maxorder,username)
+    execmany(q,inputs)
     q="INSERT INTO todo_tbl VALUES(?,?,?,?,?)"
-    inputs(id,maxorder)
+    inputs=(id,maxorder,date,item,color);
+    inputs=(id,maxorder)
+    execmany(q,inputs)
