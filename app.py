@@ -57,7 +57,7 @@ def register():
                 return render_template('register.html', errorMessage = 'Password cannot be blank')
             if (password1 == password2):
                 if (db_manager.addUser(name , username, password1)):
-                    return redirect(url_for("index"))
+                    return render_template('login.html')
                 return render_template('register.html',
                     errorMessage = "Username already taken")
             return render_template('register.html',
