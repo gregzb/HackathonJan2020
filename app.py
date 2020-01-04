@@ -14,7 +14,6 @@ app.secret_key = os.urandom(32)
 images = ["altitude", "beach", "calmocean", "fireworks", "forest", "hotel", "italy", "minecraft", "mountain", "nomansky", "skyline", "sunrise", "timessquare", "treasurebottle", "winter"]
 
 coolors = [['#5668d', '#28090', '#0a896', '#2c39a', '#f0f3bd']
-,['#ffffff', '#0171f', '#03459', '#07ea7', '#0a8e8']
 ,['#d8e2dc', '#ffe5d9', '#ffcad4', '#f4acb7', '#9d8189']
 ,['#fe938c', '#e6b89c', '#ead2ac', '#9cafb7', '#4281a4']
 ,['#5bc0eb', '#fde74c', '#9bc53d', '#e55934', '#fa7921']
@@ -41,20 +40,36 @@ coolors = [['#5668d', '#28090', '#0a896', '#2c39a', '#f0f3bd']
 ,['#50514f', '#f25f5c', '#ffe066', '#247ba0', '#70c1b3']
 ,['#1a535c', '#4ecdc4', '#f7fff7', '#ff6b6b', '#ffe66d']
 ,['#2b2d42', '#8d99ae', '#edf2f4', '#ef233c', '#d9429']
-,['#ffffff', '#84dcc6', '#a5ffd6', '#ffa69e', '#ff686b']
 ,['#247ba0', '#70c1b3', '#b2dbbf', '#f3ffbd', '#ff1654']]
 
-quotes = ["Good, better, best. Never let it rest. 'Til your good is better and your better is best.", "If a cow ever got the chance, he'd eat you and everyone you care about", "It’s okay if you don’t like me. Not everyone has good taste.", "As your best friend I’ll always pick you up when you fall, after I finish laughing.", "A successful man is one who can lay a firm foundation with the bricks others have thrown at him.", "There is no traffic jam along the extra mile", "If you don't design your own life plan, chances are you'll fall into someone else's plan. And guess what they have planned for you? Not much", "Don't let the fear of losing be greater than the excitement of winning.", 
+quotes = ["Perfection is not attainable, but if we chase perfection we can catch excellence.",
+"Everything you've ever wanted is on the other side of fear.",
+"There are two ways of spreading light: to be the candle or the mirror that reflects it.",
+"It is never too late to be what you might have been.",
+"The roots of education are bitter, but the fruit is sweet.",
+"To be the best, you must be able to handle the worst.",
+"The key to immortality is first living a life worth remembering.",
+"You must be the change you wish to see in the world.",
+"Keep your face always toward the sunshine - and shadows will fall behind you.",
+"To succeed in life, you need two things: ignorance and confidence.",
+"Mastering others is strength. Mastering yourself is true power.",
+"Change your life today.",
+"If you obey all the rules, you miss all the fun.",
+"Wanting to be someone else is a waste of the person you are.",
+"No one can make you feel inferior without your consent.",
+"Be not afraid of going slowly, be afraid only of standing still."
+"Good, better, best. Never let it rest. 'Til your good is better and your better is best.", "If a cow ever got the chance, he'd eat you and everyone you care about", "It’s okay if you don’t like me. Not everyone has good taste.", "As your best friend I’ll always pick you up when you fall, after I finish laughing.", "A successful man is one who can lay a firm foundation with the bricks others have thrown at him.", "There is no traffic jam along the extra mile", "If you don't design your own life plan, chances are you'll fall into someone else's plan. And guess what they have planned for you? Not much", "Don't let the fear of losing be greater than the excitement of winning."
 ]
+
 @app.route("/")
 @app.route("/index")
 def index():
     db_builder.build_db()
     if 'username' in session and 'password' in session:
         session['name'] = db_manager.getName(session['username'])
+        listList=db_manager.getList(session['username'])
         colors = random.choice(coolors)
-        print(colors)
-        return render_template("todo.html", session = session, motivational_quote = "Well done is better than well said.", coolors = colors, image = random.choice(images))
+        return render_template("todo.html", session = session, motivational_quote = random.choice(quotes), lists=listList,coolors = colors, image = random.choice(images))
     return render_template('login.html', errorMessage = "", image = random.choice(images))
 
 @app.route("/login", methods=["POST"])
@@ -64,7 +79,6 @@ def login():
     if (session):
         username = session['username']
         password = session['password']
-        print(session)
         if (db_manager.userValid(username, password)):
             return redirect(url_for("index"))
         return render_template('login.html', errorMessage = "Invalid Credentials", image = random.choice(images))
@@ -93,7 +107,7 @@ def register():
                 return render_template('register.html', errorMessage = 'Password cannot be blank', image = random.choice(images))
             if (password1 == password2):
                 if (db_manager.addUser(name , username, password1)):
-                    return redirect(url_for("index"))
+                    return render_template('login.html')
                 return render_template('register.html',
                     errorMessage = "Username already taken")
             return render_template('register.html',
