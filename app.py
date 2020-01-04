@@ -61,8 +61,15 @@ quotes = ["Perfection is not attainable, but if we chase perfection we can catch
 "If you obey all the rules, you miss all the fun.",
 "Wanting to be someone else is a waste of the person you are.",
 "No one can make you feel inferior without your consent.",
-"Be not afraid of going slowly, be afraid only of standing still."
-"Good, better, best. Never let it rest. 'Til your good is better and your better is best.", "If a cow ever got the chance, he'd eat you and everyone you care about", "It’s okay if you don’t like me. Not everyone has good taste.", "As your best friend I’ll always pick you up when you fall, after I finish laughing.", "A successful man is one who can lay a firm foundation with the bricks others have thrown at him.", "There is no traffic jam along the extra mile", "If you don't design your own life plan, chances are you'll fall into someone else's plan. And guess what they have planned for you? Not much", "Don't let the fear of losing be greater than the excitement of winning."
+"Be not afraid of going slowly, be afraid only of standing still.",
+"Good, better, best. Never let it rest. 'Til your good is better and your better is best.",
+"If a cow ever got the chance, he'd eat you and everyone you care about",
+"It’s okay if you don’t like me. Not everyone has good taste.",
+"As your best friend I’ll always pick you up when you fall, after I finish laughing.",
+"A successful man is one who can lay a firm foundation with the bricks others have thrown at him.",
+"There is no traffic jam along the extra mile",
+"If you don't design your own life plan, chances are you'll fall into someone else's plan. And guess what they have planned for you? Not much",
+"Don't let the fear of losing be greater than the excitement of winning."
 ]
 
 @app.route("/")
