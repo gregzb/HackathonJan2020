@@ -28,8 +28,12 @@ def addUser(name,username, password):
     data = execmany(q, inputs).fetchone()
     if (data is None):
         q = "INSERT INTO user_tbl VALUES(?, ?, ?, ?)"
-        command = "SELECT flag from flags_tbl where country=?"
-        inputs = (name, username, password)
+        command = "SELECT randid from stored_tbl;"
+        num=exec(command).fetchone()[0]
+        inputs = (num, name, username, password)
         execmany(q, inputs)
+        q="INSERT INTO stored_tbl VALUES(?)"
+        inputs=(num)
+        execmany(q,inputs)
         return True
     return False
