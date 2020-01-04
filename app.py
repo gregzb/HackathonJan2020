@@ -6,12 +6,14 @@ from flask import url_for
 from flask import session
 import os
 import db_builder
+import db_manager
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
 
 
 @app.route("/index")
 def index():
+    print(session)
     return render_template("todo.html")
 
 @app.route("/")
@@ -34,7 +36,7 @@ def login():
             validLogin = db_manager.userValid(username, password) #temp for testing
             if (not validLogin):
                 return render_template('login.html', errorMessage = "Invalid Credentials")
-            return redirect(url_for("home"))
+            return redirect(url_for("index"))
         else:
             return render_template('login.html',errorMessage = "")
 
@@ -55,7 +57,7 @@ def register():
                 return render_template('register.html', errorMessage = 'Password cannot be blank')
             if (password1 == password2):
                 if (db_manager.addUser("poo",username, password1)):
-                    return redirect(url_for("home"))
+                    return redirect(url_for("index"))
                 return render_template('register.html',
                     errorMessage = "Username already taken")
             return render_template('register.html',
