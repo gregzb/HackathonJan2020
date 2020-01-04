@@ -1,7 +1,8 @@
 body {
-    background-image: url('static/images/hotel.jpg');
+    background-image: url('../images/hotel.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 input {
