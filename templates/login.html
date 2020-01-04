@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+Please log in to enter the site:
+<br>
+{{errorMessage}}
+<br>
+
+Please log in to enter the site:
+       <br>
+       <br>
+       {{errorMessage}}
+       <br>
+       <form action='/login', method="POST">
+           Username:
+           <br>
+           <input type = 'text' name = 'username' >
+           <br>
+           <br>
+           Password:
+           <br>
+           <input type = 'password' name = 'password' >
+           <br>
+           <br>
+           <input type = 'submit' name = 'sub1'>
+           <br>
+           <br>
+       </form>
+
+
+       <br>
+       New to the site? Register here.
+       <form action='/login', method="POST">
+         <input type = 'submit' name = 'sub1', value = 'Register'>
+       </form>
+
+{% endblock %}

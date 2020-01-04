@@ -1,0 +1,36 @@
+{% block content %}
+
+Please register to enter the site:
+<br>
+{{errorMessage}}
+<br>
+Please register to enter the site:
+      <br>
+      {{errorMessage}}
+      <br>
+      <form action='/register', method="POST">
+          Username:
+          <br>
+          <input type = 'text' name = 'username' >
+          <br>
+          <br>
+          Password:
+          <br>
+          <input type = 'password' name = 'password1' >
+          <br>
+          <br>
+          Confirm password:
+          <br>
+          <input type = 'password' name = 'password2' >
+          <br>
+          <br>
+          <input type = 'submit' name = 'sub1'>
+          <br>
+          <br>
+      </form>
+      <br>
+      Already Have Account? Log In.
+      <form action='/register', method="POST">
+        <input type = 'submit' name = 'sub1', value = 'Log In'>
+      </form>
+</body>
