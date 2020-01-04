@@ -6,10 +6,16 @@ def formatFetch(results):
     '''def formatFetch(results): format results from fetchall into a list'''
     collection=[]
     for item in results:
-         if str(item) not in collection:
-            collection.append(str(item)[2:-3])
+        collection.append(str(item)[2:-3])
     return collection
-
+def formatFetch2(results):
+    '''def formatFetch(results): format results from fetchall into a list'''
+    collection=[]
+    for item in results:
+        newitem=str(item)[2:-3]
+        if newitem not in collection:
+            collection.append(newitem)
+    return collection
 def userValid(username, password):
     q = "SELECT username FROM user_tbl;"
     data = exec(q)
@@ -33,10 +39,10 @@ def addUser(name,username, password):
         num=exec(command).fetchone()[0]
         inputs = (num,username, password, name)
         execmany(q, inputs)
-        print()
+        print(num)
         num+=1
-        q="UPDATE stored_tbl stored_tbl SET id=?"
-        inputs=(num,)
+        q="UPDATE stored_tbl SET id=? WHERE id=?"
+        inputs=(num,num-1)
         execmany(q,inputs)
         return True
     return False
@@ -60,12 +66,18 @@ def getName(username):
     q="SELECT name FROM user_tbl WHERE username=?"
     inputs=(username,)
     data=execmany(q,inputs).fetchall()
-    data=formatFetch(data)[0];
+    data=formatFetch(data)[0]
+    return data
+def getID(username):
+    q="SELECT id FROM user_tbl WHERE username=?"
+    inputs=(username,)
+    data=execmany(q,inputs).fetchone()[0]
     return data
 
 def getList(username):
-    q="SELECT listName FROM todo_tbl WHERE username=?"
-    inputs=(username,)
-    data=execmany(q,inputs)
-    data=formatFetch(data)
+    id=getID(username)
+    q="SELECT listName FROM todo_tbl WHERE id=?"
+    inputs=(id,)
+    data=execmany(q,inputs).fetchall()
+    data=formatFetch2(data)
     return data

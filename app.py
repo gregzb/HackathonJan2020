@@ -16,8 +16,8 @@ def index():
     db_builder.build_db()
     if 'username' in session and 'password' in session:
         session['name'] = db_manager.getName(session['username'])
-        listList=getList(session['username'])
-        return render_template("todo.html", session = session, motivational_quote = "Well done is better than well said." lists=listList)
+        listList=db_manager.getList(session['username'])
+        return render_template("todo.html", session = session, motivational_quote = "Well done is better than well said.", lists=listList)
     return render_template('login.html', errorMessage = "")
 
 @app.route("/login", methods=["POST"])
@@ -27,7 +27,6 @@ def login():
     if (session):
         username = session['username']
         password = session['password']
-        print(session)
         if (db_manager.userValid(username, password)):
             return redirect(url_for("index"))
         return render_template('login.html', errorMessage = "Invalid Credentials")
