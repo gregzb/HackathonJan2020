@@ -1,6 +1,6 @@
 import sqlite3, urllib, json
 
-DB_FILE = "trivia.db"
+DB_FILE = "todo.db"
 
 def exec(cmd):
     """Executes a sqlite command"""
@@ -30,4 +30,4 @@ def build_db():
     exec(command)
 
     command="INSERT INTO stored_tbl VALUES(0);"
-    exec(command);
+    exec(command)
