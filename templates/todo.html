@@ -25,6 +25,43 @@
       </div>
   </div>
 
+<<<<<<< HEAD
+            </div>
+        </div>
+    </div>
+
+    <ul id="draggablePanelList" class="list-unstyled">
+    <li class="panel panel-info">
+        <div class="panel-heading">You can drag this panel.</div>
+        <div class="panel-body">Content ...</div>
+    </li>
+    <li class="panel panel-info">
+        <div class="panel-heading">You can drag this panel too.</div>
+        <div class="panel-body">Content ...</div>
+    </li>
+</ul>
+<script type="text/javascript">
+  jQuery(function($) {
+    var panelList = $('#draggablePanelList');
+
+    panelList.sortable({
+        // Only make the .panel-heading child elements support dragging.
+        // Omit this to make then entire <li>...</li> draggable.
+        handle: '.panel-heading',
+        update: function() {
+            $('.panel', panelList).each(function(index, elem) {
+                 var $listItem = $(elem),
+                     newIndex = $listItem.index();
+
+                 // Persist the new indices.
+            });
+        }
+    });
+});
+</script>
+
+
+=======
   <br>◯
 
   <div id="todolist">
@@ -47,4 +84,5 @@
       </div>
   </div>
 </div>
+>>>>>>> 5665189863a72853ae1354bbcb2b2c1926c97fe9
 {% endblock %}
