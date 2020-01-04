@@ -6,10 +6,16 @@ def formatFetch(results):
     '''def formatFetch(results): format results from fetchall into a list'''
     collection=[]
     for item in results:
-         if str(item) not in collection:
-            collection.append(str(item)[2:-3])
+        collection.append(str(item)[2:-3])
     return collection
-
+def formatFetch2(results):
+    '''def formatFetch(results): format results from fetchall into a list'''
+    collection=[]
+    for item in results:
+        newitem=str(item)[2:-3]
+        if newitem not in collection:
+            collection.append(newitem)
+    return collection
 def userValid(username, password):
     q = "SELECT username FROM user_tbl;"
     data = exec(q)
@@ -33,14 +39,15 @@ def addUser(name,username, password):
         num=exec(command).fetchone()[0]
         inputs = (num,username, password, name)
         execmany(q, inputs)
+        print(num)
         num+=1
-        q="INSERT INTO stored_tbl VALUES(?)"
-        inputs=(num,)
+        q="UPDATE stored_tbl SET id=? WHERE id=?"
+        inputs=(num,num-1)
         execmany(q,inputs)
         return True
     return False
 
-def additem(username,password, date,item,color):
+def additem(username,name,date,item,color):
     inputs = (username,)
     q="SELECT id FROM user_tbl WHERE username=?"
     id=execmany(q,inputs).fetchone()[0]
@@ -50,12 +57,27 @@ def additem(username,password, date,item,color):
     q="UPDATE user_tbl SET maxorder=? WHERE username=?"
     inputs=(maxorder,username)
     execmany(q,inputs)
-    q="INSERT INTO todo_tbl VALUES(?,?,?,?,?)"
-    inputs=(id,maxorder,date,item,color);
+    q="INSERT INTO todo_tbl VALUES(?,?,?,?,?,?)"
+    inputs=(id,name,maxorder,date,item,color);
     inputs=(id,maxorder)
     execmany(q,inputs)
-    
+
 def getName(username):
     q="SELECT name FROM user_tbl WHERE username=?"
     inputs=(username,)
-    return execmany(q,inputs).fetchone()[0]
+    data=execmany(q,inputs).fetchall()
+    data=formatFetch(data)[0]
+    return data
+def getID(username):
+    q="SELECT id FROM user_tbl WHERE username=?"
+    inputs=(username,)
+    data=execmany(q,inputs).fetchone()[0]
+    return data
+
+def getList(username):
+    id=getID(username)
+    q="SELECT listName FROM todo_tbl WHERE id=?"
+    inputs=(id,)
+    data=execmany(q,inputs).fetchall()
+    data=formatFetch2(data)
+    return data

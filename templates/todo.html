@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% block logout %}
 <ul class="nav navbar-nav">
     <li class="nav-item">
@@ -7,22 +6,29 @@
     </li>
 </ul>
 {% endblock %}
-
 {% block content %}
-<div class="w-100 p-4" style="border-radius: 10px;">
+<div class="w-100 p-4">
     <div class="card">
         <div class="card-body">
-            <h1 class="page-header">Welcome {{ session.name}}! </h1>
-            <h4 class="font-weight-light font-italic text-secondary">{{motivational_quote}}</h4>
+            <h1 class="page-header"> <font color={{coolors[0]}}>Welcome {{ session.name}}!</font> </h1>
+            <h3 class="font-weight-light font-italic text-secondary">{{motivational_quote}}</h3>
         </div>
     </div>
 
-    <br>
-
+<br>
     <div class="card">
         <div class="card-body">
-            <h2 class="page-header">Todos: </h2>
+            <h2 class="page-header">To-Dos: </h2>
         </div>
+        <div class="row">
+          <div class="col-sm-1">
+            </div>
+          <div class="col-sm-2">
+            {% for item in lists %}
+            <h4><a href="#" onClick="document.form1.reset();">{{item}}</a></h4>
+            {% endfor %}
+          </div>
+          </div>
     </div>
     <br>
     <div id="todolist">
@@ -55,6 +61,43 @@
     </div>
 </div>
 
+<<<<<<< HEAD
 <script src="static/js/base.js"></script>
+=======
+<div class="container w-100 p-4">
+ <ul id="draggablePanelList" class="list-unstyled w-100">
+   <li class="card w-100">
+       <div class="card-body w-100">Content here ...</div>
+   </li>
+   <li class="card">
+       <div class="card-body">Content here ...</div>
+   </li>
+   <li class="card">
+       <div class="card-body">Content here ...</div>
+   </li>
+   <li class="card">
+       <div class="card-body">Content here ...</div>
+   </li>
+ </ul>
+<script type="text/javascript">
+    jQuery(function($) {
+        var panelList = $('#draggablePanelList');
+
+        panelList.sortable({
+            // Only make the .panel-heading child elements support dragging.
+            // Omit this to make then entire <li>...</li> draggable.
+            handle: '.card-body',
+            update: function() {
+                $('.card', panelList).each(function(index, elem) {
+                    var $listItem = $(elem),
+                        newIndex = $listItem.index();
+
+                        // Persist the new indices.
+                });
+            }
+        });
+    });
+</script>
+>>>>>>> 555391ea5dcc59f6a557668267a5e31ac30a20c4
 
 {% endblock %}
