@@ -11,15 +11,12 @@ app = Flask(__name__)
 app.secret_key = os.urandom(32)
 
 
+@app.route("/")
 @app.route("/index")
 def index():
     print(session)
-    return render_template("todo.html")
-
-@app.route("/")
-def firstLogin():
-    if ('username' in session and 'password' in session):
-        redirect(url_for("index"))
+    if 'username' in session and 'password' in session:
+        return render_template("todo.html")
     return render_template('login.html',errorMessage = "")
 
 @app.route("/login", methods=["POST"])
@@ -44,7 +41,7 @@ def login():
 @app.route("/register", methods=["POST"])
 def register():
     if(request.form['sub1'] == 'Log In'):
-        return redirect(url_for("firstLogin"))
+        return redirect(url_for("index"))
     else:
         session['username'] = request.form["username"]          # assign username key in session to inputted username
         session['password'] = request.form["password1"]          # assign password key in session to inputted password1
@@ -73,8 +70,8 @@ def logout():      # route logs out the user by getting rid of username and pass
         session.pop('password')
         if 'password2' in session:
             session.pop('password2')
-        return redirect(url_for("firstLogin"))                # redirect to beginning
-    return redirect(url_for("firstLogin"))                # redirect to beginning
+        return redirect(url_for("index"))                # redirect to beginning
+    return redirect(url_for("index"))                # redirect to beginning
 
 
 
