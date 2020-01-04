@@ -17,7 +17,7 @@ def index():
     if 'username' in session and 'password' in session:
         session['name'] = db_manager.getName(session['username'])
         print(session)
-        return render_template("todo.html")
+        return render_template("todo.html", session = session, motivational_quote = "Well done is better than well said.")
     return render_template('login.html', errorMessage = "")
 
 @app.route("/login", methods=["POST"])
