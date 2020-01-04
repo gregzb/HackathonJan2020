@@ -9,7 +9,7 @@ import db_builder
 import db_manager
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
-
+db_builder.build_db()
 
 @app.route("/")
 @app.route("/index")
