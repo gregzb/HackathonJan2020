@@ -20,31 +20,31 @@
 
     <br>
 
-  <div class="card">
-      <div class="card-body">
-          <h2 class="page-header">Todos: </h2>
-      </div>
-  </div>
-
-  <div id="todolist">
-      <div class="card">
-          <div class="card-body">
-              <h2 class="page-header">Homework</h2>
-              <hr>
-              <div class="row">
-                  <div class="col col-sm-8">
-                      <input type="text" class="form-control input-lg col-xs-1 shadow-none" style="border: none; font-size: 18px;" id="inputlg"></input>
-                  </div>
-                  <div class="col col-sm-1">
-                      <div class="form-check">
-                          <input type="checkbox" class="form-check-input big-checkbox" id="exampleCheck1">
-                      </div>
-                  </div>
-                  <div class="col col-sm-3"></div>
-              </div>
-          </div>
-      </div>
-  </div>
+    <div class="card">
+        <div class="card-body">
+            <h2 class="page-header">Todos: </h2>
+        </div>
+    </div>
+    <br>
+    <div id="todolist">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="page-header">Homework</h2>
+                <hr>
+                <div class="row">
+                    <div class="col col-sm-8">
+                        <input type="text" class="form-control input-lg col-xs-1 shadow-none" style="border: none; font-size: 18px;" id="inputlg"></input>
+                    </div>
+                    <div class="col col-sm-1">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input big-checkbox" id="exampleCheck1">
+                        </div>
+                    </div>
+                    <div class="col col-sm-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="container w-100 p-4">
@@ -63,7 +63,7 @@
    </li>
  </ul>
 <script type="text/javascript">
-  jQuery(function($) {
+    jQuery(function($) {
         var panelList = $('#draggablePanelList');
 
         panelList.sortable({
@@ -72,10 +72,10 @@
             handle: '.card-body',
             update: function() {
                 $('.card', panelList).each(function(index, elem) {
-                     var $listItem = $(elem),
-                         newIndex = $listItem.index();
+                    var $listItem = $(elem),
+                        newIndex = $listItem.index();
 
-                     // Persist the new indices.
+                        // Persist the new indices.
                 });
             }
         });
