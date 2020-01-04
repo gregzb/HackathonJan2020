@@ -6,3 +6,6 @@ body {
 input {
     border-radius: 5px;
 }
+#draggablePanelList .panel-heading {
+    cursor: move;
+}
