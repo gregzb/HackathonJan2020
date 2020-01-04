@@ -6,8 +6,10 @@
         <div class="card-body">
             Please log in to enter the site:
             <br>
-            {{errorMessage}}
             <br>
+            <div style="color:red;">
+                {{errorMessage}}
+            </div>
             <form action='/login', method="POST">
                 Username:
                 <br>
