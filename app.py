@@ -20,10 +20,23 @@ def index():
         return render_template("todo.html", session = session, motivational_quote = "Well done is better than well said.")
     return render_template('login.html', errorMessage = "")
 
-@app.route("/register", methods=["GET"])
+@app.route("/login", methods=["POST"])
 def login():
-    return render_template('register.html', errorMessage = "")
+    session['username'] = request.form["username"]          # assign username key in session to inputted username
+    session['password'] = request.form["password"]          # assign password key in session to inputted password
+    if (session):
+        username = session['username']
+        password = session['password']
+        print(session)
+        if (db_manager.userValid(username, password)):
+            return redirect(url_for("index"))
+        return render_template('login.html', errorMessage = "Invalid Credentials")
+    else:
+        return render_template('login.html',errorMessage = "")
 
+@app.route("/register", methods=["GET"])
+def register_get():
+    return render_template('register.html', errorMessage = "")
 
 @app.route("/register", methods=["POST"])
 def register():
