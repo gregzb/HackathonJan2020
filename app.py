@@ -5,18 +5,19 @@ from flask import redirect
 from flask import url_for
 from flask import session
 import os
+import db_builder
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
 
-@app.route("/")
+
 @app.route("/index")
 def index():
-    return redirect(url_for("firstLogin"))
+    return render_template("todo.html")
 
 @app.route("/")
 def firstLogin():
     if ('username' in session and 'password' in session):
-        redirect(url_for("home"))
+        redirect(url_for("index"))
     return render_template('login.html',errorMessage = "")
 
 @app.route("/login", methods=["POST"])
@@ -30,8 +31,8 @@ def login():
         if (session):
             username = session['username']
             password = session['password']
-            validLogin = checkLogin.checkLogin(username, password) #temp for testing
-            if (validLogin == -1):
+            validLogin = db_manager.userValid(username, password) #temp for testing
+            if (not validLogin):
                 return render_template('login.html', errorMessage = "Invalid Credentials")
             return redirect(url_for("home"))
         else:
@@ -53,7 +54,7 @@ def register():
             if password1 == '' or password2 == '':
                 return render_template('register.html', errorMessage = 'Password cannot be blank')
             if (password1 == password2):
-                if (newuser.addUser(username, password1) != -1):
+                if (db_manager.addUser("poo",username, password1)):
                     return redirect(url_for("home"))
                 return render_template('register.html',
                     errorMessage = "Username already taken")
@@ -75,7 +76,7 @@ def logout():      # route logs out the user by getting rid of username and pass
 
 
 
-
 if __name__ == "__main__":
+    db_builder.build_db()
     app.debug = True
     app.run()
