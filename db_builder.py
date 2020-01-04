@@ -30,4 +30,4 @@ def build_db():
     exec(command)
 
     command="INSERT INTO stored_tbl VALUES(0);"
-    exec(command);
+    exec(command)

@@ -24,16 +24,18 @@ def userValid(username, password):
     return False
 
 def addUser(name,username, password):
+    q = "SELECT * FROM user_tbl WHERE username=?"
     inputs = (username,)
     data = execmany(q, inputs).fetchone()
     if (data is None):
         q = "INSERT INTO user_tbl VALUES(?, ?, ?, ?)"
-        command = "SELECT randid from stored_tbl;"
+        command = "SELECT id FROM stored_tbl;"
         num=exec(command).fetchone()[0]
         inputs = (num, name, username, password)
         execmany(q, inputs)
+        num+=1
         q="INSERT INTO stored_tbl VALUES(?)"
-        inputs=(num)
+        inputs=(num,)
         execmany(q,inputs)
         return True
     return False
