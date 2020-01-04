@@ -34,10 +34,9 @@
                 <br>
             </form>
             <br>
-            Already Have Account? Log In.
-            <form action='/register', method="POST">
-                <input type = 'submit' name = 'sub1', value = 'Log In'>
-            </form>
+            Already have an account? Log In.
+            <br>
+            <a href= {{ url_for('index') }} class="btn btn-primary" role="button" aria-pressed="true">Log In</a>
         </div>
     </div>
 </div>
