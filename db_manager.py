@@ -54,3 +54,8 @@ def additem(username,password, date,item,color):
     inputs=(id,maxorder,date,item,color);
     inputs=(id,maxorder)
     execmany(q,inputs)
+    
+def getName(username):
+    q="SELECT name FROM user_tbl WHERE username=?"
+    inputs=(username,)
+    return execmany(q,inputs).fetchone()[0]
