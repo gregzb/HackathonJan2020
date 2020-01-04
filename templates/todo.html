@@ -61,43 +61,6 @@
     </div>
 </div>
 
-<<<<<<< HEAD
 <script src="static/js/base.js"></script>
-=======
-<div class="container w-100 p-4">
- <ul id="draggablePanelList" class="list-unstyled w-100">
-   <li class="card w-100">
-       <div class="card-body w-100">Content here ...</div>
-   </li>
-   <li class="card">
-       <div class="card-body">Content here ...</div>
-   </li>
-   <li class="card">
-       <div class="card-body">Content here ...</div>
-   </li>
-   <li class="card">
-       <div class="card-body">Content here ...</div>
-   </li>
- </ul>
-<script type="text/javascript">
-    jQuery(function($) {
-        var panelList = $('#draggablePanelList');
-
-        panelList.sortable({
-            // Only make the .panel-heading child elements support dragging.
-            // Omit this to make then entire <li>...</li> draggable.
-            handle: '.card-body',
-            update: function() {
-                $('.card', panelList).each(function(index, elem) {
-                    var $listItem = $(elem),
-                        newIndex = $listItem.index();
-
-                        // Persist the new indices.
-                });
-            }
-        });
-    });
-</script>
->>>>>>> 555391ea5dcc59f6a557668267a5e31ac30a20c4
 
 {% endblock %}
