@@ -11,7 +11,9 @@ import db_builder
 import db_manager
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
-images = ["altitude", "beach", "calmocean", "fireworks", "forest", "hotel", "italy", "minecraft", "mountain", "nomansky", "skyline", "sunrise", "timessquare", "treasurebottle", "winter"]
+images = ["altitude", "beach", "calmocean", "firewatch", "fireworks", "forest", "hotel", "iceberg",
+"italy", "minecraft", "mountain", "nomansky", "skyline", "streetlights", "sunrise", "timessquare",
+"treasurebottle", "tropicalisland", "windmill", "winter"]
 
 coolors = [['#5668d', '#28090', '#0a896', '#2c39a', '#f0f3bd']
 ,['#d8e2dc', '#ffe5d9', '#ffcad4', '#f4acb7', '#9d8189']
