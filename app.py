@@ -9,6 +9,7 @@ import db_builder
 import db_manager
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
+images = ["beach", "calmocean", "forest"]
 
 @app.route("/")
 @app.route("/index")
