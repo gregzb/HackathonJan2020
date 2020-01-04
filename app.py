@@ -69,9 +69,9 @@ def index():
     db_builder.build_db()
     if 'username' in session and 'password' in session:
         session['name'] = db_manager.getName(session['username'])
+        listList=db_manager.getList(session['username'])
         colors = random.choice(coolors)
-        print(colors)
-        return render_template("todo.html", session = session, motivational_quote = "Well done is better than well said.", coolors = colors, image = random.choice(images))
+        return render_template("todo.html", session = session, motivational_quote = "Well done is better than well said.", lists=listList,coolors = colors, image = random.choice(images))
     return render_template('login.html', errorMessage = "", image = random.choice(images))
 
 @app.route("/login", methods=["POST"])
@@ -81,7 +81,6 @@ def login():
     if (session):
         username = session['username']
         password = session['password']
-        print(session)
         if (db_manager.userValid(username, password)):
             return redirect(url_for("index"))
         return render_template('login.html', errorMessage = "Invalid Credentials", image = random.choice(images))
@@ -110,7 +109,7 @@ def register():
                 return render_template('register.html', errorMessage = 'Password cannot be blank', image = random.choice(images))
             if (password1 == password2):
                 if (db_manager.addUser(name , username, password1)):
-                    return redirect(url_for("index"))
+                    return render_template('login.html')
                 return render_template('register.html',
                     errorMessage = "Username already taken")
             return render_template('register.html',
