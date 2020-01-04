@@ -11,7 +11,6 @@ def exec(cmd):
     return output
 
 def execmany(cmd, inputs):
-    """Executes a sqlite command using ? placeholder"""
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     output = c.execute(cmd, inputs)
