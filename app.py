@@ -4,12 +4,14 @@ from flask import request
 from flask import redirect
 from flask import url_for
 from flask import session
+import random
 import os
 import random
 import db_builder
 import db_manager
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
+images = ["altitude", "beach", "calmocean", "fireworks", "forest", "hotel", "italy", "minecraft", "mountain", "nomansky", "skyline", "sunrise", "timessquare", "treasurebottle", "winter"]
 
 coolors = [['#5668d', '#28090', '#0a896', '#2c39a', '#f0f3bd']
 ,['#ffffff', '#0171f', '#03459', '#07ea7', '#0a8e8']
@@ -50,8 +52,8 @@ def index():
         session['name'] = db_manager.getName(session['username'])
         colors = random.choice(coolors)
         print(colors)
-        return render_template("todo.html", session = session, motivational_quote = "Well done is better than well said.", coolors = colors)
-    return render_template('login.html', errorMessage = "")
+        return render_template("todo.html", session = session, motivational_quote = "Well done is better than well said.", coolors = colors, image = random.choice(images))
+    return render_template('login.html', errorMessage = "", image = random.choice(images))
 
 @app.route("/login", methods=["POST"])
 def login():
@@ -63,13 +65,13 @@ def login():
         print(session)
         if (db_manager.userValid(username, password)):
             return redirect(url_for("index"))
-        return render_template('login.html', errorMessage = "Invalid Credentials")
+        return render_template('login.html', errorMessage = "Invalid Credentials", image = random.choice(images))
     else:
-        return render_template('login.html',errorMessage = "")
+        return render_template('login.html',errorMessage = "", image = random.choice(images))
 
 @app.route("/register", methods=["GET"])
 def register_get():
-    return render_template('register.html', errorMessage = "")
+    return render_template('register.html', errorMessage = "", image = random.choice(images))
 
 @app.route("/register", methods=["POST"])
 def register():
@@ -86,15 +88,15 @@ def register():
             password1 = session['password']
             password2 = session['password2']
             if password1 == '' or password2 == '':
-                return render_template('register.html', errorMessage = 'Password cannot be blank')
+                return render_template('register.html', errorMessage = 'Password cannot be blank', image = random.choice(images))
             if (password1 == password2):
                 if (db_manager.addUser(name , username, password1)):
                     return redirect(url_for("index"))
                 return render_template('register.html',
                     errorMessage = "Username already taken")
             return render_template('register.html',
-                errorMessage = "Passwords do not match. Please try again.")
-        return render_template('register.html', errorMessage = "")
+                errorMessage = "Passwords do not match. Please try again.", image = random.choice(images))
+        return render_template('register.html', errorMessage = "", image = random.choice(images))
 
     #add user checks if account exists (returns false). If DNE, enters into database, returns true
 
