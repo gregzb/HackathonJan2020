@@ -5,11 +5,23 @@
 
 {% block content %}
 <div class="w-100 p-4">
-    <div class="card">
-        <div class="card-body">
-            <h1 class="page-header">Welcome {{ session.name}}! </h1>
-            <h3 class="font-weight-light font-italic text-secondary">{{motivational_quote}}</h3>
-        </div>
-    </div>
+  <div class="card">
+      <div class="card-body">
+          <h1 class="page-header">Welcome {{ session.name}}! </h1>
+          <h3 class="font-weight-light font-italic text-secondary">{{motivational_quote}}</h3>
+      </div>
+  </div>
+
+  <br>
+
+  <div class="card">
+      <div class="card-body">
+          <h2 class="page-header">Todo: </h2>
+          <div id="todo-list">
+
+          </div>
+      </div>
+  </div>
+
 </div>
 {% endblock %}
