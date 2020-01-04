@@ -9,15 +9,15 @@ import db_builder
 import db_manager
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
-db_builder.build_db()
 
 @app.route("/")
 @app.route("/index")
 def index():
+    db_builder.build_db()
     if 'username' in session and 'password' in session:
         session['name'] = db_manager.getName(session['username'])
         print(session)
-        return render_template("todo.html")
+        return render_template("todo.html", session = session, motivational_quote = "Well done is better than well said.")
     return render_template('login.html', errorMessage = "")
 
 @app.route("/login", methods=["POST"])

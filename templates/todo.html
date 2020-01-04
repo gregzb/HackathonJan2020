@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 
 {% block logout %}
-<li class="navbar-nav ml-auto px-2">
-  <a href= {{ url_for('logout') }} class="btn btn-outline-danger navbar-btn pull-right" role="button" aria-pressed="true">Log Out</a>
+
+<li class="navbar-nav px-2">
+  <a href= {{ url_for('logout') }} class="float-right btn btn-outline-danger navbar-btn" role="button" aria-pressed="true">Log Out</a>
 </li>
 {% endblock %}
 
 {% block content %}
 <br>
-
+<h1 class="page-header">Welcome {{ session.name}}! </h1>
+<h2>{{motivational_quote}}</h2>
 {% endblock %}
